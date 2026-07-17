@@ -1,0 +1,567 @@
+/* 視覺規範 0-4。僅表現層:Color / Typography / Layout / Card / Motion / Icon。
+   不涉及任何功能、流程、結果內容或計分。 */
+
+/* Typography（0-4 §5）：Title = jf-openhuninn（粉圓）。Body = Noto Sans TC（見 index.html）。 */
+@font-face {
+  font-family: "jf-openhuninn";
+  src: url("https://cdn.jsdelivr.net/gh/justfont/open-huninn-font/font/jf-openhuninn-2.0.ttf")
+    format("truetype");
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+:root {
+  /* Color（0-4 §4） */
+  --bg: #f8f7f4; /* 奶油白 */
+  --text: #4b4b4b; /* 深暖灰 */
+  --text-2: #8a8a8a; /* 淡灰 */
+  --primary: #7e9774; /* 鼠尾草綠 */
+  --secondary: #cdbfaf; /* 暖灰棕 */
+  --card: #ffffff;
+
+  --font-title: "jf-openhuninn", "Noto Sans TC", system-ui, sans-serif;
+  --font-body: "Noto Sans TC", system-ui, "Microsoft JhengHei", sans-serif;
+
+  --radius: 24px;
+  --shadow: 0 8px 30px rgba(0, 0, 0, 0.05); /* 非常淡 */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  line-height: 1.9;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Layout（0-4 §6）：max-width 700、置中、上下大留白 */
+.app {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 96px 20px 120px;
+}
+
+/* 全站固定標題列已移除(Owner C-1):答題頁與結果頁不再重複顯示完整主標。 */
+
+/* ---------- Homepage（0-4 §7 文案 / 0-6 §1 順序） ---------- */
+.home {
+  text-align: center;
+  padding: 48px 8px 24px;
+}
+
+.home-title {
+  font-family: var(--font-title);
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 1.7;
+  color: var(--text);
+  margin: 0 0 34px;
+}
+
+.home-sub {
+  font-size: 17px;
+  color: var(--text-2);
+  line-height: 2.1;
+  margin: 0 0 46px;
+}
+
+.home-icon {
+  font-size: 42px;
+  margin: 0 0 46px;
+}
+
+.home-start {
+  display: inline-block;
+  min-width: 200px;
+  padding: 16px 40px;
+  border: none;
+  border-radius: 16px;
+  background: var(--primary);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 16px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: opacity 300ms ease, transform 300ms ease;
+}
+
+.home-start:hover {
+  opacity: 0.92;
+}
+
+/* Card（0-4 §6）：白卡、48 padding、24 圓角、極淡陰影 */
+.card,
+.section {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 48px;
+  box-shadow: var(--shadow);
+}
+
+@media (max-width: 560px) {
+  .app {
+    padding: 56px 16px 80px;
+  }
+  .card,
+  .section {
+    padding: 28px 22px;
+  }
+}
+
+/* ---------- Question Page（0-4 §8） ---------- */
+.progress {
+  font-size: 14px;
+  color: var(--text-2);
+  margin: 0 0 14px;
+  letter-spacing: 1px;
+}
+
+.title {
+  font-family: var(--font-title);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.6;
+  margin: 0 0 6px;
+}
+
+.prompt {
+  font-size: 17px;
+  color: var(--text);
+  margin: 0 0 28px;
+}
+
+/* 選項:卡片式,非 Radio。Hover 輕微上浮,選取鼠尾草綠邊框。 */
+.options {
+  list-style: none;
+  margin: 0 0 28px;
+  padding: 0;
+}
+
+.options li {
+  margin-bottom: 12px;
+}
+
+.opt {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+  padding: 18px 20px;
+  border: 1.5px solid #ece9e3;
+  border-radius: 16px;
+  background: #fdfcfa;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text);
+  transition: transform 300ms ease, border-color 300ms ease, background 300ms ease,
+    box-shadow 300ms ease;
+}
+
+.opt:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+  border-color: #ddd8cf;
+}
+
+.opt-selected,
+.opt-selected:hover {
+  border-color: var(--primary);
+  background: #f1f5ef;
+}
+
+.opt-key {
+  font-weight: 600;
+  color: var(--primary);
+  min-width: 20px;
+}
+
+.opt-text {
+  flex: 1;
+}
+
+.next {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 16px;
+  background: var(--primary);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 16px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: opacity 300ms ease, transform 300ms ease, background 300ms ease;
+}
+
+.next:hover {
+  opacity: 0.92;
+}
+
+/* 重新測驗:次要、輕(0-7 Top-only)。非滿版、置中、透明底、淡邊框(既有色票,不新增顏色);
+   視覺重量低於結尾文字與插畫。present 且可點,僅視覺於 Long Pause 後完整顯現(見 retryFadeIn)。
+   獨立樣式,不動 .next。 */
+.restart {
+  display: inline-block;
+  width: auto;
+  padding: 11px 30px;
+  border: 1px solid #ddd8cf;
+  border-radius: 16px;
+  background: transparent;
+  color: var(--text-2);
+  font-family: var(--font-body);
+  font-size: 15px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: color 300ms ease, border-color 300ms ease;
+}
+
+.restart:hover {
+  color: var(--text);
+  border-color: var(--secondary);
+}
+
+.next:disabled {
+  background: #d8d5cd;
+  cursor: not-allowed;
+}
+
+/* ---------- Result Page（0-4 §9） ---------- */
+.result {
+  display: block;
+}
+
+.result-top-icon {
+  text-align: center;
+  font-size: 40px;
+  margin-bottom: 24px;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+.section h2 {
+  font-family: var(--font-title);
+  font-size: 19px;
+  font-weight: 500;
+  margin: 0 0 16px;
+}
+
+.section h4 {
+  font-family: var(--font-title);
+  font-weight: 500;
+  font-size: 16px;
+  margin: 18px 0 6px;
+  color: var(--text);
+}
+
+.primary,
+.secondary {
+  font-family: var(--font-title);
+  font-size: 22px;
+  font-weight: 500;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  align-items: center;
+}
+
+.type-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.type-icon {
+  font-size: 20px;
+}
+
+.dual-note {
+  color: var(--text-2);
+  font-size: 14px;
+  margin: 0 0 8px;
+}
+
+.radar-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 8px 0 4px;
+}
+
+.ratio-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0;
+}
+
+.ratio-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.ratio-label {
+  min-width: 68px;
+  font-size: 14px;
+  color: var(--text);
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.ratio-bar {
+  flex: 1;
+  height: 10px;
+  background: #efece6;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.ratio-fill {
+  display: block;
+  height: 100%;
+  border-radius: 6px;
+  transition: width 600ms ease;
+}
+
+.ratio-pct {
+  min-width: 44px;
+  text-align: right;
+  font-size: 14px;
+  color: var(--text-2);
+}
+
+.copy {
+  margin-top: 14px;
+  font-size: 16px;
+  color: var(--text);
+}
+
+.copy p {
+  margin: 0 0 14px;
+}
+
+.copy ul {
+  margin: 10px 0;
+  padding-left: 20px;
+}
+
+.copy li {
+  margin-bottom: 4px;
+}
+
+/* Important sentence emphasis（0-6 §5）：引言句用主色邊框與更多呼吸,讓它落下來被看見。 */
+.copy blockquote {
+  font-size: 17px;
+  margin: 20px 0;
+  padding: 4px 0 4px 18px;
+  border-left: 3px solid var(--primary);
+  color: var(--text);
+  line-height: 1.95;
+}
+
+.ending {
+  background: #f3f1ea;
+}
+
+.ending h3 {
+  font-family: var(--font-title);
+  font-weight: 500;
+  font-size: 17px;
+}
+
+/* Markdown 水平分隔線（v0.3.1,僅結果頁 Markdown）：安靜、極低存在感,像書頁的段落分隔。
+   對齊 0-4/0-5/0-6:不粗、不高對比、上下留較大呼吸。不影響題目頁與其他呈現。
+   Owner test 回饋:改為文字區內的輕微左縮排(不再置中),避免視覺偏右。 */
+.result hr {
+  border: none;
+  width: 56px;
+  height: 1px;
+  margin: 52px 0 52px 24px;
+  background: var(--text);
+  opacity: 0.24;
+}
+
+/* 結尾 Long Pause（0-7）：Universal Ending 與重新測驗之間留 72px 安靜留白。 */
+.actions {
+  margin-top: 72px;
+  text-align: center;
+}
+
+/* ---------- Result Illustrations（0-7 情緒插畫） ----------
+   容器以 max-width + max-height + object-fit 控制光學外框,不裁切內容;保留各張長寬比。 */
+.illus {
+  display: flex;
+  justify-content: center;
+}
+.illus img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+/* Top（書頁小插圖,0-7 §5:175 / 170 / 160）：存在感低於類型名/核心句。 */
+.illus-top {
+  margin: 0 auto 22px;
+}
+.illus-top img {
+  max-width: 175px;
+  max-height: 200px;
+}
+
+@media (max-width: 767px) {
+  .illus-top img {
+    max-width: 170px;
+  }
+}
+@media (max-width: 560px) {
+  .illus-top img {
+    max-width: 160px;
+  }
+}
+
+/* ===== Motion & Reading Pacing（0-4 §10 + 0-6） =====
+   fade + translateY(10px)、ease-out、250–350ms;停頓/依序營造慢閱讀。
+   時間值對應 0-6 §8 Motion Token(enter/breath/hold)。 */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 題目淡出（0-6 §2 / 第二批）：前一題先淡出,App 於 exit + 短停頓後才掛入下一題。
+   純 opacity 淡出(不位移、不滑動、不彈跳),符合「翻頁的安靜感」。 */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Question transition（0-6 §2）：每題以 key 觸發淡入(enter.base);選項略晚一拍逐一淡入 */
+.card {
+  animation: fadeUp 300ms ease-out both;
+}
+/* 轉場淡出:比 .card 更具體,覆蓋進場動畫(240ms exit.base) */
+.card.card-exit {
+  animation: fadeOut 240ms ease-out both;
+}
+.options li {
+  animation: fadeUp 260ms ease-out both;
+}
+.options li:nth-child(1) {
+  animation-delay: 140ms;
+}
+.options li:nth-child(2) {
+  animation-delay: 220ms;
+}
+.options li:nth-child(3) {
+  animation-delay: 300ms;
+}
+.options li:nth-child(4) {
+  animation-delay: 380ms;
+}
+.options li:nth-child(5) {
+  animation-delay: 460ms;
+}
+
+/* Homepage sequence（0-6 §1）：留白 → 主標 → 副標 → 🌱 → 開始測驗,各留呼吸停頓 */
+.home > * {
+  animation: fadeUp 320ms ease-out both;
+}
+.home-title {
+  animation-delay: 200ms;
+}
+.home-sub {
+  animation-delay: 700ms;
+}
+.home-icon {
+  animation-delay: 1200ms;
+}
+.home-start {
+  animation-delay: 1700ms;
+}
+
+/* Result reveal pacing（0-6 §3 + Owner A-1 呈現順序）：逐一淡入,結尾最慢,重新測驗更晚。
+   各區塊 animation-delay 改由 ResultView 依 A-1 順序以 inline style 指定,
+   避免 nth-of-type 受條件式「次要區塊」增減而錯位;此處只保留基礎淡入(fade + translateY)。 */
+.result-top-icon {
+  animation: fadeUp 300ms ease-out both;
+}
+.result .section {
+  animation: fadeUp 320ms ease-out both;
+}
+/* 重新測驗淡入（0-7 Top-only）：present 且可點,視覺先較淡(0.35),於 Long Pause 後完整顯現。
+   完成時間 ≈ Universal Ending(2800ms) + Long Pause 1600ms → 約 4400ms。
+   互動永不鎖:僅 opacity 動畫、保留版位、未 disabled、不延遲掛載(Owner 約束)。
+   Reduced Motion（animation:none）下 .restart 預設 opacity:1,直接完整、無等待。 */
+@keyframes retryFadeIn {
+  from {
+    opacity: 0.35;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.result .actions .restart {
+  animation: retryFadeIn 500ms ease-out 3900ms both;
+}
+
+/* Top 插畫抵達（0-7 §4.1）：安靜、幾乎不可察覺的位移(3px)。 */
+@keyframes illusTopIn {
+  from {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.illus-top img {
+  animation: illusTopIn 600ms ease-out 150ms both;
+}
+
+/* 重要句抵達（0-6 §5/§6 + Owner B-2）：
+   只作用於結果內容中「位於區塊結尾」的引言句(blockquote:last-child),
+   讓它略晚(--bq-delay,由 ResultView 依所在區塊指定)、略慢(enter.slow 350ms)抵達,
+   使前面的內容先安定、這句話最後落下來被看見(Reading Pause)。
+   用 :last-child 只挑「該區塊最後一個元素就是引言句」的情形,
+   非結尾的引言句不延遲,避免其後仍有文字時出現視覺空洞。 */
+.copy blockquote:last-child {
+  animation: fadeUp 350ms ease-out both;
+  animation-delay: var(--bq-delay, 0ms);
+}
+
+/* Universal Ending 獨立節奏（0-6 §7 + Owner B-2）：
+   🌱 結尾句(ending 區塊結尾的引言句)以獨立的 --ending-bq-delay 抵達,
+   刻意與內容引言句使用不同選取、不同延遲,不因同為 blockquote 而共用。 */
+.ending blockquote:last-child {
+  animation: fadeUp 350ms ease-out both;
+  animation-delay: var(--ending-bq-delay, 0ms);
+}
+
+/* Reduced Motion（0-6 §8）：關閉所有位移與淡入,直接靜態呈現(不殘留隱藏狀態) */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

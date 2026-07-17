@@ -1,0 +1,17 @@
+# dependencies / build
+node_modules
+dist
+
+# env
+.env
+.env.local
+.env.*.local
+
+# vercel
+.vercel
+
+# Claude Code 本機設定(含本機絕對路徑,不應提交)
+.claude/settings.local.json
+
+# OS
+.DS_Store
