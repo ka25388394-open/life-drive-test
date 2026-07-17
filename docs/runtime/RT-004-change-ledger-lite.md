@@ -12,9 +12,10 @@
 - **Project**：人生驅動測驗
 - **Current Version**：0.3.4
 - **Current Status**：STABLE
-- **Current Focus**：Next Feature Review
+- **Current Focus**：MVP Validation
 - **Last Stable**：0.3.4
 - **Next Planned**：0.4.0 Scroll Reveal
+- **Deployment**：Vercel Production Completed
 - **package.json version**：0.1.0（刻意不同步;Product Runtime Version ≠ package.json version;**不得修改 package.json**）
 - **Build**：`tsc --noEmit && vite build` 通過
 
