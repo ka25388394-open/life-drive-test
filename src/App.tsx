@@ -3,6 +3,7 @@
 // 純瀏覽器當次狀態,無持久化 / 登入 / DB / 追蹤 / 上傳。
 
 import { useState } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import { useQuiz } from "./state/useQuiz";
 import { Homepage } from "./components/Homepage";
 import { QuestionView } from "./components/QuestionView";
@@ -69,6 +70,7 @@ export function App() {
           onNext={handleNext}
         />
       )}
+      <Analytics />
     </main>
   );
 }
