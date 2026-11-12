@@ -3,6 +3,7 @@
 // 純瀏覽器當次狀態,無持久化 / 登入 / DB / 追蹤 / 上傳。
 
 import { useState } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import { useQuiz } from "./state/useQuiz";
 import { Homepage } from "./components/Homepage";
 import { QuestionView } from "./components/QuestionView";
@@ -51,24 +52,27 @@ export function App() {
   };
 
   return (
-    <main className="app">
-      {!started ? (
-        <Homepage onStart={handleStart} />
-      ) : quiz.finished ? (
-        <ResultView answers={quiz.answers} onRestart={handleRestart} />
-      ) : (
-        <QuestionView
-          key={quiz.index}
-          question={quiz.current}
-          index={quiz.index}
-          total={quiz.total}
-          selected={quiz.selected}
-          isLast={quiz.isLast}
-          exiting={exiting}
-          onSelect={quiz.select}
-          onNext={handleNext}
-        />
-      )}
-    </main>
+    <>
+      <main className="app">
+        {!started ? (
+          <Homepage onStart={handleStart} />
+        ) : quiz.finished ? (
+          <ResultView answers={quiz.answers} onRestart={handleRestart} />
+        ) : (
+          <QuestionView
+            key={quiz.index}
+            question={quiz.current}
+            index={quiz.index}
+            total={quiz.total}
+            selected={quiz.selected}
+            isLast={quiz.isLast}
+            exiting={exiting}
+            onSelect={quiz.select}
+            onNext={handleNext}
+          />
+        )}
+      </main>
+      <Analytics />
+    </>
   );
 }
